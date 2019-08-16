@@ -1,14 +1,11 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './public/index.html',
   filename: './index.html'
 });
-const dotENVPlugin = new Dotenv({
-  systemvars: true
-});
+
 const babelLoaderRule = {
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
@@ -45,5 +42,5 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
 
-  plugins: [htmlPlugin, dotENVPlugin]
+  plugins: [htmlPlugin]
 };
