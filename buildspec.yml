@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 8
+    commands:
+      - echo $CODEBUILD_SRC_DIR
+      - echo installing phase
+      - npm install
+  build:
+    commands:
+      - echo build begins
+      - npm run build
+      - echo build ends
+artifacts:
+  files: 
+    - '**/*'
+  base-directory: 'dist'
+  discard-paths: yes
+
