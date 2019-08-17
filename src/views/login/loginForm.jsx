@@ -67,7 +67,6 @@ export default class LoginForm extends React.Component {
 
   async handleEmailLogin(e) {
     e.stopPropagation();
-    console.log('login', this.state.email, this.state.password);
     const loginResponse = await userLoginAPI({ email: this.state.email, password: this.state.password, mode: 'email_password' });
     if (loginResponse.success) {
       this.props.onLoginSuccess();

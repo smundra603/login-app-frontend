@@ -22,7 +22,6 @@ export class LoginPage extends React.Component {
 
   async onLoginSuccess() {
     this.props.history.push('/app');
-    console.log(this.props.history.location, this.getURLTab());
     this.setState({
       loggedIn: true
     });
@@ -31,7 +30,6 @@ export class LoginPage extends React.Component {
     return this.props.history.location.pathname.split('/')[1];
   }
   render() {
-    console.log('props inside is', this.props.history.location.pathname, LOGIN_PATH, this.getURLTab(), this.state.loggedIn, this.props.children);
     return this.getURLTab() === LOGIN_PATH || !this.state.loggedIn ? (
       <LoginContainer>
         <LoginForm onLoginSuccess={this.onLoginSuccess} />
