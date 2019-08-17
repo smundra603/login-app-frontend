@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 // import { Route, Switch } from 'react-router';
-import { Route, Router, Switch, Redirect } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import theme from './themes';
 import { LoginPage } from './views/login';
