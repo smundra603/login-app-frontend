@@ -1,6 +1,6 @@
 export default async function api(route, data) {
-  console.log('process.env.BACKEND_URL..', process.env.BACKEND_URL);
-  const response = await fetch(`${process.env.BACKEND_URL}/${route}`, {
+  console.log('process.env.BACKEND_URL..', process.env.BACKEND_URL || 'https://sm-login-app.herokuapp.com');
+  const response = await fetch(`https://sm-login-app.herokuapp.com/${route}`, {
     method: 'POST',
     headers: {
       'Access-Control-Allow-Origin': '*',
