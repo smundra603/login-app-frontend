@@ -1,26 +1,15 @@
 {
-  "name": "learn_react",
+  "name": "login-web-app",
   "version": "0.0.1",
-  "description": "This is a project to learn react",
+  "description": "This is a project to for login",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --config ./webpack.dev.js --open --hot",
-    "build": "webpack --mode production --config ./webpack.prod.js"
+    "start:local": "webpack-dev-server --mode development --config ./webpack.dev.js --open --hot",
+    "start": "webpack --mode production --config ./webpack.prod.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/smundra603/learn-react.git"
-  },
-  "keywords": [
-    "learn-react"
-  ],
   "author": "Shubham Mundra",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/smundra603/learn-react/issues"
-  },
-  "homepage": "https://github.com/smundra603/learn-react#readme",
+  "license": "ISC", 
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
@@ -48,7 +37,6 @@
     "dotenv-webpack": "^1.5.7"
   },
   "dependencies": {
-    "formik": "^1.5.8",
     "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "prop-types": "^15.7.2",
