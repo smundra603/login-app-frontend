@@ -120,10 +120,11 @@ export default class LoginForm extends React.Component {
     );
   }
   renderVerifyOTP() {
+    const otpLabel = `${this.state.resendOTPLoading ? 'SENDING OTP' : 'OTP SENT'} TO ${this.state.phoneNumber}`;
     return (
       <FormContainer>
         <Form>
-          <FormLabel>{this.state.resendOTPLoading ? 'SENDING OTP' : 'OTP SENT'}</FormLabel>
+          <FormLabel style={{ fontSize: '15px' }}>{otpLabel}</FormLabel>
           <OTPInput value={this.state.otp} name="otp" placeholder="Enter 4 digit OTP" onChange={this.handleChange} />
         </Form>
         <MobileLoginContainer>
@@ -166,6 +167,13 @@ export default class LoginForm extends React.Component {
     const toRenderLoginOptions = allLoginOptions.filter((item) => item !== this.state.loginVia);
     return (
       <LoginOptionsContainer>
+        {this.state.otpSent ? (
+          <LoginOption>
+            <LoginOptionButton value="phoneNumber" onClick={this.handleLoginChange}>
+              CHANGE NUMBER
+            </LoginOptionButton>
+          </LoginOption>
+        ) : null}
         <MarginBetween> OR </MarginBetween>
         {toRenderLoginOptions.map((option) => (
           <LoginOption>

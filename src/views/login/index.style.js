@@ -92,8 +92,12 @@ export const LoginFormContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-left: -250px;
-  margin-top: -100px;
+  margin-left: -200px;
+  margin-top: -150px;
+  ${({ theme }) => theme.mobileL`
+    width: 320px;
+    margin-left: -160px;
+  `};
 `;
 
 export const LoginTypeContainer = styled.div`
