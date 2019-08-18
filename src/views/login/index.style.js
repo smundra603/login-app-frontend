@@ -22,7 +22,16 @@ export const LoginButton = styled.button`
     cursor: pointer;
   }
 `;
-
+export const Button = styled.button`
+  font-size: 14px;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 10px;
+  /* box-shadow: 0px 0px 8px 0px #aaaaaa; */
+  &:hover {
+    cursor: pointer;
+  }
+`;
 export const OTPButton = styled.div`
   box-sizing: border-box;
   font-size: 16px;
@@ -77,9 +86,9 @@ export const email = css`
 
 export const LoginFormContainer = styled.div`
   border-radius: 5px;
-  width: 500px;
+  width: 400px;
   background-color: #f2f2f2;
-  padding: 5px 20px 20px 20px;
+  padding: 20px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -87,10 +96,21 @@ export const LoginFormContainer = styled.div`
   margin-top: -100px;
 `;
 
-export const FormContainer = styled.form``;
+export const LoginTypeContainer = styled.div`
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+`;
+
+export const Form = styled.form``;
+export const FormContainer = styled.div`
+  width: 100%;
+`;
 
 export const FormLabel = styled.label`
   font-size: 20px;
+  display: block;
+  width: 100%;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 `;
@@ -122,8 +142,7 @@ export const MobileInput = styled.input.attrs((props) => ({ ...props, type: 'num
 export const OTPInput = styled.input.attrs((props) => ({ ...props, type: 'number' }))`
   ${FormInputCSS}
   outline: none;
-  /* width: 20px; */
-  border-bottom: 1px solid;
+  width: 200px;
   padding: 10px;
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {

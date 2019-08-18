@@ -5,7 +5,6 @@ import {
   FormLabel,
   EmailInput,
   PasswordInput,
-  LoginRegisterContainer,
   LoginButton,
   MobileInput,
   LoginOptionsContainer,
@@ -14,7 +13,9 @@ import {
   MarginBetween,
   MobileLoginContainer,
   OTPInput,
-  OTPButton
+  LoginTypeContainer,
+  Button,
+  Form
 } from './index.style';
 import { userLoginAPI, verifyOTP, resendOTP } from '../../API/loginApi';
 
@@ -107,48 +108,44 @@ export default class LoginForm extends React.Component {
 
   renderLoginViaEmailForm() {
     return (
-      <div>
-        <FormContainer>
+      <FormContainer>
+        <Form>
           <FormLabel>Email</FormLabel>
           <EmailInput placeholder="Enter email" value={this.state.email} name="email" onChange={this.handleChange} />
           <FormLabel>Password</FormLabel>
           <PasswordInput placeholder="Enter password" value={this.state.password} name="password" onChange={this.handleChange} />
-        </FormContainer>
-        <LoginRegisterContainer>
-          <LoginButton onClick={this.handleEmailLogin}> Login </LoginButton>
-        </LoginRegisterContainer>
-      </div>
+        </Form>
+        <LoginButton onClick={this.handleEmailLogin}> Login </LoginButton>
+      </FormContainer>
     );
   }
   renderVerifyOTP() {
     return (
-      <div style={{ marginTop: '10px' }}>
-        <FormContainer>
-          <FormLabel style={{ margin: '0px auto' }}>{this.state.resendOTPLoading ? 'SENDING OTP' : 'OTP SENT'}</FormLabel>
-          <MobileLoginContainer>
-            <OTPInput value={this.state.otp} name="otp" placeholder="Enter 4 digit OTP" onChange={this.handleChange} />
-            <OTPButton onClick={this.handleVerifyOTP} disbale={this.state.resendOTPLoading}>
-              Verify
-            </OTPButton>
-            <OTPButton style={{ marginLeft: '10px' }} onClick={this.handleResendOTP}>
-              Resend
-            </OTPButton>
-          </MobileLoginContainer>
-        </FormContainer>
-      </div>
+      <FormContainer>
+        <Form>
+          <FormLabel>{this.state.resendOTPLoading ? 'SENDING OTP' : 'OTP SENT'}</FormLabel>
+          <OTPInput value={this.state.otp} name="otp" placeholder="Enter 4 digit OTP" onChange={this.handleChange} />
+        </Form>
+        <MobileLoginContainer>
+          <Button onClick={this.handleVerifyOTP} disbale={this.state.resendOTPLoading}>
+            Verify
+          </Button>
+          <Button style={{ marginLeft: '10px' }} onClick={this.handleResendOTP}>
+            Resend
+          </Button>
+        </MobileLoginContainer>
+      </FormContainer>
     );
   }
   renderLoginViaMobile() {
     return (
-      <div>
-        <FormContainer>
+      <FormContainer>
+        <Form>
           <FormLabel>Mobile Number</FormLabel>
-          <MobileLoginContainer>
-            <MobileInput placeholder="Enter phone number" value={this.state.phoneNumber} name="phoneNumber" onChange={this.handleChange} />
-            <OTPButton onClick={this.handleSendOTP}> SEND OTP </OTPButton>
-          </MobileLoginContainer>
-        </FormContainer>
-      </div>
+          <MobileInput placeholder="Enter phone number" value={this.state.phoneNumber} name="phoneNumber" onChange={this.handleChange} />
+        </Form>
+        <Button onClick={this.handleSendOTP}> SEND OTP </Button>
+      </FormContainer>
     );
   }
 
@@ -169,6 +166,7 @@ export default class LoginForm extends React.Component {
     const toRenderLoginOptions = allLoginOptions.filter((item) => item !== this.state.loginVia);
     return (
       <LoginOptionsContainer>
+        <MarginBetween> OR </MarginBetween>
         {toRenderLoginOptions.map((option) => (
           <LoginOption>
             <LoginOptionButton value={option} onClick={this.handleLoginChange}>
@@ -176,15 +174,14 @@ export default class LoginForm extends React.Component {
             </LoginOptionButton>
           </LoginOption>
         ))}
-        <MarginBetween> OR </MarginBetween>
       </LoginOptionsContainer>
     );
   }
   render() {
     return (
       <LoginFormContainer>
+        <LoginTypeContainer>{this.renderLoginFormsBasedOnType()}</LoginTypeContainer>
         {this.renderLoginOptions()}
-        {this.renderLoginFormsBasedOnType()}
       </LoginFormContainer>
     );
   }

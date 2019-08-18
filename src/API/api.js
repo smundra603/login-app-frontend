@@ -1,4 +1,5 @@
 export default async function api(route, data) {
+  console.log('data inside is', data);
   const response = await fetch(`https://sm-login-app.herokuapp.com/${route}`, {
     method: 'POST',
     headers: {
