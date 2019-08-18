@@ -70,7 +70,7 @@ export default class LoginForm extends React.Component {
     e.stopPropagation();
     const loginResponse = await userLoginAPI({ email: this.state.email, password: this.state.password, mode: 'email_password' });
     if (loginResponse.success) {
-      this.props.onLoginSuccess();
+      this.props.onLoginSuccess(loginResponse);
     }
   }
   async handleVerifyOTP(e) {
@@ -78,7 +78,7 @@ export default class LoginForm extends React.Component {
     const { phoneNumber, otp } = this.state;
     const otpVerificationResponse = await verifyOTP({ phoneNumber, otp });
     if (otpVerificationResponse.success) {
-      this.props.onLoginSuccess();
+      this.props.onLoginSuccess(otpVerificationResponse);
     }
   }
   async handleResendOTP(e) {
@@ -164,24 +164,19 @@ export default class LoginForm extends React.Component {
   }
 
   renderLoginOptions() {
+    const renderOption = (option, index) => (
+      <LoginOption key={index}>
+        <LoginOptionButton value={option} onClick={this.handleLoginChange}>
+          {`${loginOptionsLabel[option]} LOGIN`}
+        </LoginOptionButton>
+      </LoginOption>
+    );
     const toRenderLoginOptions = allLoginOptions.filter((item) => item !== this.state.loginVia);
     return (
       <LoginOptionsContainer>
-        {this.state.otpSent ? (
-          <LoginOption>
-            <LoginOptionButton value="phoneNumber" onClick={this.handleLoginChange}>
-              CHANGE NUMBER
-            </LoginOptionButton>
-          </LoginOption>
-        ) : null}
+        {this.state.otpSent ? renderOption('phoneNumber', 'change_number') : null}
         <MarginBetween> OR </MarginBetween>
-        {toRenderLoginOptions.map((option) => (
-          <LoginOption>
-            <LoginOptionButton value={option} onClick={this.handleLoginChange}>
-              {`${loginOptionsLabel[option]} LOGIN`}
-            </LoginOptionButton>
-          </LoginOption>
-        ))}
+        {toRenderLoginOptions.map((option, index) => renderOption(option, index))}
       </LoginOptionsContainer>
     );
   }
