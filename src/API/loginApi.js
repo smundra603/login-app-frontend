@@ -5,12 +5,12 @@ export async function userLoginAPI(userLoginData) {
   return response;
 }
 
-export async function verifyOTP(otpData) {
-  const response = await api('verify-otp', otpData);
+export async function mobileLoginAPI(loginData) {
+  const response = await api('login_mobile', loginData);
   return response;
 }
 
-export async function resendOTP(resendOtpData) {
-  const response = await api('resend-otp', resendOtpData);
+export async function verifyOTP(otpData) {
+  const response = await api('verify-otp', otpData);
   return response;
 }

@@ -17,7 +17,7 @@ import {
   Button,
   Form
 } from './index.style';
-import { userLoginAPI, verifyOTP, resendOTP } from '../../API/loginApi';
+import { userLoginAPI, verifyOTP, mobileLoginAPI } from '../../API/loginApi';
 
 const allLoginOptions = ['email_password', 'phoneNumber'];
 const loginOptionsLabel = {
@@ -88,7 +88,7 @@ export default class LoginForm extends React.Component {
       resendOTPLoading: true,
       otp: ''
     });
-    const otpVerificationResponse = await resendOTP({ phoneNumber });
+    const otpVerificationResponse = await mobileLoginAPI({ mode: 'phoneNumber', phoneNumber, resend: true });
     if (otpVerificationResponse.success) {
       this.setState({
         resendOTPLoading: false
@@ -98,7 +98,7 @@ export default class LoginForm extends React.Component {
 
   async handleSendOTP(e) {
     e.stopPropagation();
-    const loginResponse = await userLoginAPI({ mode: 'phoneNumber', phoneNumber: this.state.phoneNumber });
+    const loginResponse = await mobileLoginAPI({ mode: 'phoneNumber', phoneNumber: this.state.phoneNumber });
     if (loginResponse.success) {
       this.setState({
         otpSent: true
