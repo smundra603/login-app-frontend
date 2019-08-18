@@ -108,6 +108,25 @@ export default class LoginForm extends React.Component {
     }
   }
 
+  renderLoginOptions() {
+    const toRenderLoginOptions = allLoginOptions.filter((item) => item !== this.state.loginVia);
+    return (
+      <LoginOptionsContainer>
+        {this.state.otpSent ? this.renderOption('phoneNumber', 'change_number', 'CHANGE NUMBER') : null}
+        <MarginBetween> OR </MarginBetween>
+        {toRenderLoginOptions.map((option, index) => this.renderOption(option, index, `${loginOptionsLabel[option]} LOGIN`))}
+      </LoginOptionsContainer>
+    );
+  }
+
+  renderOption = (option, index, label) => (
+    <LoginOption key={index}>
+      <LoginOptionButton value={option} onClick={this.handleLoginChange}>
+        {label}
+      </LoginOptionButton>
+    </LoginOption>
+  );
+
   renderLoginViaEmailForm() {
     return (
       <FormContainer>
@@ -121,6 +140,7 @@ export default class LoginForm extends React.Component {
       </FormContainer>
     );
   }
+
   renderVerifyOTP() {
     const otpLabel = `${this.state.resendOTPLoading ? 'SENDING OTP' : 'OTP SENT'} TO ${this.state.phoneNumber}`;
     return (
@@ -140,6 +160,7 @@ export default class LoginForm extends React.Component {
       </FormContainer>
     );
   }
+
   renderLoginViaMobile() {
     return (
       <FormContainer>
@@ -165,23 +186,6 @@ export default class LoginForm extends React.Component {
     }
   }
 
-  renderLoginOptions() {
-    const renderOption = (option, index) => (
-      <LoginOption key={index}>
-        <LoginOptionButton value={option} onClick={this.handleLoginChange}>
-          {`${loginOptionsLabel[option]} LOGIN`}
-        </LoginOptionButton>
-      </LoginOption>
-    );
-    const toRenderLoginOptions = allLoginOptions.filter((item) => item !== this.state.loginVia);
-    return (
-      <LoginOptionsContainer>
-        {this.state.otpSent ? renderOption('phoneNumber', 'change_number') : null}
-        <MarginBetween> OR </MarginBetween>
-        {toRenderLoginOptions.map((option, index) => renderOption(option, index))}
-      </LoginOptionsContainer>
-    );
-  }
   render() {
     return (
       <LoginFormContainer>
