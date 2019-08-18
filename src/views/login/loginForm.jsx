@@ -91,7 +91,8 @@ export default class LoginForm extends React.Component {
     const otpVerificationResponse = await mobileLoginAPI({ mode: 'phoneNumber', phoneNumber, resend: true });
     if (otpVerificationResponse.success) {
       this.setState({
-        resendOTPLoading: false
+        resendOTPLoading: false,
+        otp: otpVerificationResponse.otp
       });
     }
   }
@@ -101,7 +102,8 @@ export default class LoginForm extends React.Component {
     const loginResponse = await mobileLoginAPI({ mode: 'phoneNumber', phoneNumber: this.state.phoneNumber });
     if (loginResponse.success) {
       this.setState({
-        otpSent: true
+        otpSent: true,
+        otp: loginResponse.otp
       });
     }
   }
