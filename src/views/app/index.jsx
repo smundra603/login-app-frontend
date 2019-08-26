@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { LogoutButton } from './index.style';
-import { deleteCustomToken } from '../../Storage/localStorage';
+import { AppContainer, ContentContainer, ContentTitle } from './index.style';
+import NavBar from './NavBar';
+import AppHeader from './AppHeader';
+import ContentView from './ContentView';
+import Jobs from '../../Data/Jobs';
+
 
 export class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-  handleLogout(e) {
-    e.stopPropagation();
-    deleteCustomToken();
-    this.props.history.push('/login');
-  }
+  renderNavBar;
   render() {
     return (
-      <div>
-        <h1>Login Successfull</h1>
-        <LogoutButton onClick={this.handleLogout}>Logout</LogoutButton>
-      </div>
+      <AppContainer>
+        <NavBar />
+        <AppHeader />
+        <ContentContainer>
+          <ContentTitle>Your Jobs</ContentTitle>
+          {Jobs.map(ContentView)}
+        </ContentContainer>
+      </AppContainer>
     );
   }
 }
