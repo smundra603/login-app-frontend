@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { NotificationsNone, Apps, Search, Star } from 'styled-icons/material';
+import { NotificationsNone, Apps, Search, Star, Timer } from 'styled-icons/material';
 import { Briefcase } from 'styled-icons/fa-solid';
 
 export const LogoutButton = styled.button`
@@ -15,30 +15,51 @@ export const LogoutButton = styled.button`
 
 export const NavBarContainer = styled.div`
   width: 64px;
+  flex-shrink: 0;
   background-color: #ffffff;
-  object-fit: contain;
   display: flex;
   flex-direction: column;
-  padding: 22px;
-  /* height: 100vh; */
+  padding-top: 98px;
   min-height: 100vh;
+  align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
-  /* border-right: 2px solid rgba(0, 0, 0, 0.05); */
+  z-index: 1;
+  ${({ theme }) => theme.laptop`
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    position: fixed;
+    bottom: 0px;
+    height: 48px;
+    min-height: 0px;
+    padding: 0px 36px;
+    justify-content: space-between;
+  `};
 `;
 
 export const AppContainer = styled.div`
   background-color: #fdfdfd;
   display: flex;
+  ${({ theme }) => theme.tablet`
+    
+  `};
 `;
 
 const iconCSS = css`
   width: 20px;
   height: 20px;
   color: #3ebcb3;
+  ${({ theme }) => theme.tablet`
+    height: auto;
+    width: auto;
+  `};
 `;
 
 export const MarginTop = styled.div`
   margin-top: 98px;
+  ${({ theme }) => theme.tablet`
+    margin-top: 0px;
+  `};
 `;
 export const BagIcon = styled(Briefcase)`
   ${iconCSS}
@@ -54,6 +75,11 @@ export const HomeIcon = styled(Apps)`
 export const NavBarIconContainer = styled.div`
   height: 56px;
   cursor: pointer;
+  ${({ theme }) => theme.tablet`
+    width: 48px;
+    height: 48px;
+    padding: 14px;
+  `};
 `;
 
 export const AppHeaderContainer = styled.div`
@@ -61,21 +87,25 @@ export const AppHeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  left: 65px;
-  padding: 12px 0px;
+  padding: 0px 165px;
   top: 0px;
-  width: calc(100% - 65px);
+  width: 100vw;
   height: 64px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
   background-color: #ffffff;
+  ${({ theme }) => theme.tablet`
+      left: 0px;
+      padding: 0px 16px;
+  `};
 `;
 
 export const ClientLogo = styled.div`
-  margin-left: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
 `;
 
 export const RightItemsContainer = styled.div`
-  margin-right: 165px;
   display: flex;
 `;
 
@@ -131,14 +161,21 @@ export const NotificationCountContainer = styled.div`
 export const ContentContainer = styled.div`
   width: 100%;
   margin: 104px 165px 0px 101px;
+  ${({ theme }) => theme.tablet`
+      padding: 100px 16px 50px 16px
+      margin: 0px;
+  `};
 `;
 
 export const ContentTitle = styled.div`
   width: 285px;
-  height: 48px;
-  font-family: Roboto;
   font-size: 36px;
   color: #1d2330;
+  ${({ theme }) => theme.tablet`
+    width: 230px;
+    font-size: 28px;
+    color: #1d2330;
+  `};
 `;
 
 export const JobViewContainer = styled.div`
@@ -151,6 +188,13 @@ export const JobViewContainer = styled.div`
   padding: 20px 36px 20px 0px;
   display: flex;
   align-items: center;
+  ${({ theme }) => theme.tablet`
+    height: auto;
+    padding: 16px;
+    margin: 24px 0px 0px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+  `};
 `;
 
 const getJobStatusColor = (props) => {
@@ -170,7 +214,7 @@ const getJobStatusColor = (props) => {
 
 export const JobViewSideLine = styled.div`
   width: 2px;
-  height: 84px;
+  height: 88px;
   border: solid 4px ${getJobStatusColor};
 `;
 
@@ -178,53 +222,97 @@ export const JobTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 34px;
-  width: 35%;
+  width: 32%;
   margin-right: 30px;
+  ${({ theme }) => theme.tablet`
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+    width: 80%;
+  `};
+`;
+export const JobTitlePaymentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 14px;
+  width: 100%;
 `;
 export const JobPayColumn = styled.div`
-  width: 10%;
+  width: 8%;
   margin-right: 30px;
+  ${({ theme }) => theme.tablet`
+    margin: 0px;
+    width: auto;
+  `};
 `;
 export const JobPay = styled.div`
-  height: 20px;
   font-size: 18px;
-  font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: normal;
   color: #1d2330;
+  ${({ theme }) => theme.tablet`
+    font-size: 16px;
+  `};
 `;
 
 export const JobStatusColumn = styled.div`
-  width: 20%;
+  width: 25%;
   margin-right: 30px;
 `;
 export const JobStatus = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 28px;
+  display: inline-block;
+  padding: 3px 12px;
+  max-width: 150px;
   border-radius: 14px;
   background-color: ${getJobStatusColor};
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.57;
   color: #ffffff;
+  ${({ theme }) => theme.tablet`
+    width: auto;
+    margin: 0px -16px;
+    padding: 2px 8px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 0px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  `};
 `;
 
 export const JobRatingColumn = styled.div`
-  width: 15%;
+  width: 18%;
   margin-right: 30px;
 `;
 
 export const JobRating = styled.div`
   display: flex;
+  min-width: 90px;
+  ${({ theme }) => theme.tablet`
+    min-width: 0px;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  `};
 `;
-export const RatingIcon = styled(Star)`
+
+const RatingIconCSS = css`
   width: 16px;
   height: 16px;
-  object-fit: contain;
+  margin-right: 8px;
+`;
+
+export const StarIcon = styled(Star)`
+  ${RatingIconCSS}
   fill: #ffdd6a;
-  margin-right: 2px;
+`;
+
+export const TimerIcon = styled(Timer)`
+  ${RatingIconCSS}
+`;
+
+export const Rating = styled.span`
+  font-size: 14px;
+  color: #1d2330;
 `;
 
 export const JobActionColumn = styled.div``;
@@ -252,16 +340,17 @@ export const JobActionButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 124px;
-  height: 36px;
+  padding: 8px 0px;
   border-radius: 4px;
   text-transform: capitalize;
   border: solid 1px #3ebcb3;
   background-color: ${getActionBackgroundColor};
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.31;
   color: ${getActionTextColor};
   cursor: pointer;
+  ${({ theme }) => theme.tablet`
+    padding: 6px 0px;
+  `};
 `;
 
 export const JobTitle = styled.span`
@@ -278,10 +367,16 @@ export const JobTitle = styled.span`
 export const JobTagsContainer = styled.div`
   display: flex;
   margin-top: 8px;
-  height: 20px;
   font-size: 14px;
-  line-height: 1.57;
   color: #1d2330;
+  ${({ theme }) => theme.tablet`
+    margin-top: 12px;
+  `};
+`;
+export const Divider = styled.div`
+  width: 100%;
+  margin: 16px -16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
 `;
 export const JobTag = styled.div``;
 
@@ -294,4 +389,13 @@ export const TagDivder = styled.div`
 
 export const TagContainer = styled.div`
   display: flex;
+`;
+
+export const JobRatingActionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 `;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavBarContainer, HomeIcon, SearchIcon, BagIcon, NavBarIconContainer, MarginTop } from './index.style';
+import { NavBarContainer, HomeIcon, SearchIcon, BagIcon, NavBarIconContainer, MarginTop, NavBarIconsAlign } from './index.style';
 
 const NavBarIcons = ['home', 'search', 'bag'];
 
@@ -18,18 +18,17 @@ const getNavBarIcon = (icon) => {
 
 function renderNavBarIcons() {
   return (
-    <div>
+    <React.Fragment>
       {NavBarIcons.map((icon) => (
-        <NavBarIconContainer>{getNavBarIcon(icon)}</NavBarIconContainer>
+        <NavBarIconContainer key={icon} >{getNavBarIcon(icon)}</NavBarIconContainer>
       ))}
-    </div>
+    </React.Fragment>
   );
 }
 
 export default function NavBar() {
   return (
     <NavBarContainer>
-      <MarginTop />
       {renderNavBarIcons()}
     </NavBarContainer>
   );

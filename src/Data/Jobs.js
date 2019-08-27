@@ -6,14 +6,14 @@ const Jobs = [
     tags: Tags,
     pay: 400,
     status: 'revision_requested',
-    rating: '2'
+    rating: '2hr 13min left'
   },
   {
     title: 'How to build an e-commerce platform : A step by step guideline. Please check and refer',
     tags: Tags,
     pay: 400,
     status: 'editorial_review',
-    rating: '2'
+    rating: 'Waiting'
   },
   {
     title: 'How to build an e-commerce platform : A step by step guideline. Please check and refer',
@@ -27,21 +27,21 @@ const Jobs = [
     tags: Tags,
     pay: 400,
     status: 'deadline_missed',
-    rating: '2'
+    rating: 'NA'
   },
   {
     title: 'How to build an e-commerce platform : A step by step guideline. Please check and refer',
     tags: Tags,
     pay: 400,
     status: 'revision_requested',
-    rating: '2'
+    rating: '2hr 13min left'
   },
   {
     title: 'How to build an e-commerce platform : A step by step guideline. Please check and refer',
     tags: Tags,
     pay: 400,
     status: 'editorial_review',
-    rating: '2'
+    rating: 'Waiting'
   },
   {
     title: 'How to build an e-commerce platform : A step by step guideline. Please check and refer',
@@ -55,7 +55,7 @@ const Jobs = [
     tags: Tags,
     pay: 400,
     status: 'deadline_missed',
-    rating: '2'
+    rating: 'NA'
   }
 ];
 export default Jobs;

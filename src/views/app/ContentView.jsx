@@ -1,4 +1,5 @@
 import * as React from 'react';
+import MediaQuery from 'react-responsive';
 import {
   JobViewSideLine,
   JobViewContainer,
@@ -16,7 +17,12 @@ import {
   JobTag,
   TagDivder,
   TagContainer,
-  RatingIcon
+  StarIcon,
+  Rating,
+  TimerIcon,
+  JobTitlePaymentContainer,
+  Divider,
+  JobRatingActionContainer
 } from './index.style';
 
 function renderJobTitle() {
@@ -50,13 +56,25 @@ function getStatusText(status) {
       return 'NA';
   }
 }
-export default function ContentView(props) {
-  const {
-    title, tags, pay, status, rating
-  } = props;
-  const action = status === 'revision_requested' ? 'revise' : 'view';
+
+function renderRating(rating) {
+  return <Rating>{rating}</Rating>;
+}
+
+function renderRatingIcon(status) {
+  switch (status) {
+    case 'revision_requested':
+    case 'editorial_review':
+      return <TimerIcon />;
+    default:
+      return <StarIcon />;
+  }
+}
+function renderDesktop({
+  status, title, tags, pay, rating, action
+}) {
   return (
-    <JobViewContainer>
+    <React.Fragment>
       <JobViewSideLine jobStatus={status} />
       <JobTitleContainer>
         {renderJobTitle(title)}
@@ -70,13 +88,62 @@ export default function ContentView(props) {
       </JobStatusColumn>
       <JobRatingColumn>
         <JobRating>
-          <RatingIcon />
-          {rating}
+          {renderRatingIcon(status)}
+          {renderRating(rating)}
         </JobRating>
       </JobRatingColumn>
       <JobActionColumn>
         <JobActionButton action={action}>{action}</JobActionButton>
       </JobActionColumn>
+    </React.Fragment>
+  );
+}
+
+function renderMobileView({
+  status, title, tags, pay, rating, action
+}) {
+  return (
+    <React.Fragment>
+      <JobStatus jobStatus={status}>{getStatusText(status)}</JobStatus>
+      <JobTitlePaymentContainer>
+        <JobTitleContainer>{renderJobTitle(title)}</JobTitleContainer>
+        <JobPayColumn>
+          <JobPay>${pay}</JobPay>
+        </JobPayColumn>
+      </JobTitlePaymentContainer>
+      {renderJobTags(tags)}
+      <Divider />
+      <JobRatingActionContainer>
+        <JobRating>
+          {renderRatingIcon(status)}
+          {renderRating(rating)}
+        </JobRating>
+        <JobActionButton action={action}>{action}</JobActionButton>
+      </JobRatingActionContainer>
+    </React.Fragment>
+  );
+}
+
+const Desktop = (props) => <MediaQuery {...props} minWidth={800} />;
+const Mobile = (props) => <MediaQuery {...props} maxWidth={769} />;
+
+export default function ContentView(props) {
+  const {
+    title, tags, pay, status, rating
+  } = props;
+  const action = status === 'revision_requested' ? 'revise' : 'view';
+  const newProps = {
+    title,
+    tags,
+    pay,
+    status,
+    rating,
+    action
+  };
+  return (
+    <JobViewContainer>
+      <Desktop>{renderDesktop(newProps)}</Desktop>
+      <Mobile>{renderMobileView(newProps)}</Mobile>
     </JobViewContainer>
   );
 }
