@@ -1,38 +1,20 @@
 import * as React from 'react';
-// import { Dropdown } from 'semantic-ui-react';
 import { JobFilterContainer, RightFiltersContainer, StyledDropdown, LeftFiltersContainer, ClearFilters, TotalJobsView, SortOrder } from './jobFilter.style';
+import { ContentCategoriesFilters, IndustriesFilters, StatusFilters, JobSortValues } from '../../Data/JobFilters';
 
-const ContentCategoriesFilters = ['All Content Categories', 'All Content Categories1', 'All Content Categories2'];
+const getDropDownOptions = (items) =>
+  items.map((item) => ({
+    key: item,
+    text: item,
+    value: item
+  }));
+const ContentCategoriesOptions = getDropDownOptions(ContentCategoriesFilters);
 
-const IndustriesFilters = ['All Industries', 'All Industries1', 'All Industries2'];
+const IndustriesOptions = getDropDownOptions(IndustriesFilters);
 
-const StatusFilters = ['Status', 'Status1', 'Status2'];
+const StatusOptions = getDropDownOptions(StatusFilters);
 
-const JobSortValues = ['Least time left first', 'Sort 1', 'Sort 2'];
-
-const ContentCategoriesOptions = ContentCategoriesFilters.map((filter) => ({
-  key: filter,
-  text: filter,
-  value: filter
-}));
-
-const IndustriesOptions = IndustriesFilters.map((filter) => ({
-  key: filter,
-  text: filter,
-  value: filter
-}));
-
-const StatusOptions = StatusFilters.map((filter) => ({
-  key: filter,
-  text: filter,
-  value: filter
-}));
-
-const JobSortOptions = JobSortValues.map((filter) => ({
-  key: filter,
-  text: filter,
-  value: filter
-}));
+const JobSortOptions = getDropDownOptions(JobSortValues);
 
 export default function JobFilters(props) {
   const { from = 0, to = 10, total = 100 } = props;

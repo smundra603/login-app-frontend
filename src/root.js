@@ -11,15 +11,12 @@ export const history = createHistory({});
 const Root = () => (
   <ThemeProvider theme={theme}>
     <Router history={history}>
-      <Switch>
-        <Route exact path="/app" component={() => <App history={history} />} />
-      </Switch>
-      {/* <LoginPage history={history}>
+      <LoginPage history={history}>
         <Redirect exact from="/" to="/app" />
         <Switch>
           <Route exact path="/app" component={() => <App history={history} />} />
         </Switch>
-      </LoginPage> */}
+      </LoginPage>
     </Router>
   </ThemeProvider>
 );
