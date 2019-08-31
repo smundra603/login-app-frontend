@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import AppHeader from './AppHeader';
 import ContentView from './ContentView';
 import Jobs from '../../Data/Jobs';
+import JobFilters from './JobFilters';
 
 
 export class App extends React.Component {
@@ -15,6 +16,7 @@ export class App extends React.Component {
         <AppHeader />
         <ContentContainer>
           <ContentTitle>Your Jobs</ContentTitle>
+          <JobFilters />
           {Jobs.map(ContentView)}
         </ContentContainer>
       </AppContainer>

@@ -23,8 +23,9 @@ export const NavBarContainer = styled.div`
   min-height: 100vh;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
-  z-index: 1;
-  ${({ theme }) => theme.laptop`
+  z-index: 12;
+  position: fixed;
+  ${({ theme }) => theme.tablet`
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -41,7 +42,6 @@ export const AppContainer = styled.div`
   background-color: #fdfdfd;
   display: flex;
   ${({ theme }) => theme.tablet`
-    
   `};
 `;
 
@@ -92,6 +92,7 @@ export const AppHeaderContainer = styled.div`
   width: 100vw;
   height: 64px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
+  z-index: 11;
   background-color: #ffffff;
   ${({ theme }) => theme.tablet`
       left: 0px;
@@ -126,7 +127,6 @@ export const BellIconContainer = styled.div`
   width: 40px;
   height: 40px;
   margin-right: 15px;
-  /* padding: 4px 0px; */
 `;
 
 export const NotificationIcon = styled(NotificationsNone)`
@@ -135,7 +135,6 @@ export const NotificationIcon = styled(NotificationsNone)`
   height: 32px;
   position: absolute;
   color: rgba(0, 0, 0, 0.5);
-  /* background-color: green; */
   z-index: 0;
 `;
 
@@ -160,7 +159,7 @@ export const NotificationCountContainer = styled.div`
 
 export const ContentContainer = styled.div`
   width: 100%;
-  margin: 104px 165px 0px 101px;
+  margin: 104px 165px 0px 165px;
   ${({ theme }) => theme.tablet`
       padding: 100px 16px 50px 16px
       margin: 0px;

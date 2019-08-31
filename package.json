@@ -46,6 +46,7 @@
     "react-dom": "^16.8.6",
     "react-responsive": "^7.0.0",
     "react-router-dom": "^5.0.0",
+    "semantic-ui-react": "^0.88.0",
     "styled-components": "^4.2.0",
     "styled-icons": "^7.15.1",
     "webpack-merge": "^4.2.1"
