@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 import { NotificationsNone, Apps, Search, Star, Timer } from 'styled-icons/material';
 import { Briefcase } from 'styled-icons/fa-solid';
+import { Pagination, PaginationItem } from 'semantic-ui-react';
 
 export const LogoutButton = styled.button`
   font-size: 14px;
   border-radius: 8px;
   margin-top: 5px;
   padding: 10px;
-  /* box-shadow: 0px 0px 8px 0px #aaaaaa; */
   &:hover {
     cursor: pointer;
   }
@@ -160,6 +160,8 @@ export const NotificationCountContainer = styled.div`
 export const ContentContainer = styled.div`
   width: 100%;
   margin: 104px 165px 0px 165px;
+  display: flex;
+  flex-direction: column;
   ${({ theme }) => theme.tablet`
       padding: 100px 16px 50px 16px
       margin: 0px;
@@ -180,7 +182,7 @@ export const ContentTitle = styled.div`
 export const JobViewContainer = styled.div`
   width: 100%;
   height: 88px;
-  margin: 24px 0px;
+  margin: 24px 0px 0px 0px;
   border-radius: 3px;
   border: solid 1px rgba(29, 35, 48, 0.08);
   background-color: #ffffff;
@@ -190,7 +192,6 @@ export const JobViewContainer = styled.div`
   ${({ theme }) => theme.tablet`
     height: auto;
     padding: 16px;
-    margin: 24px 0px 0px 0px;
     flex-direction: column;
     align-items: flex-start;
   `};
@@ -397,4 +398,47 @@ export const JobRatingActionContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const PaginationContainer = styled.div`
+  margin: 64px auto;
+`;
+
+export const StyledPagination = styled(Pagination)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  &.ui.mini.menu {
+    font-size: 16px;
+    border-radius: 3px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  &.ui.menu {
+    min-height: 0px;
+  }
+  &.ui.pagination.menu .active.item {
+    background-color: #3ebcb3;
+    color: white;
+  }
+  &.ui.pagination.menu .item {
+    outline: none;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0px 4px;
+    color: #1d2330;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+  
+`;
+export const StyledPaginationItem = styled(PaginationItem)`
+  margin: 0px 20px;
+  border-radius: 3px !important;
+  border: solid 1px rgba(106, 106, 106, 0.08) !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px !important;
 `;

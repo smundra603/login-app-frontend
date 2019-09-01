@@ -5,6 +5,7 @@ import AppHeader from './AppHeader';
 import ContentView from './ContentView';
 import Jobs from '../../Data/Jobs';
 import JobFilters from './JobFilters';
+import JobsPagination from './JobsPagination';
 
 
 export class App extends React.Component {
@@ -18,6 +19,7 @@ export class App extends React.Component {
           <ContentTitle>Your Jobs</ContentTitle>
           <JobFilters />
           {Jobs.map(ContentView)}
+          <JobsPagination />
         </ContentContainer>
       </AppContainer>
     );

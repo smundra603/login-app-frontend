@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavBarContainer, HomeIcon, SearchIcon, BagIcon, NavBarIconContainer, MarginTop, NavBarIconsAlign } from './index.style';
+import { NavBarContainer, HomeIcon, SearchIcon, BagIcon, NavBarIconContainer } from './index.style';
 
 const NavBarIcons = ['home', 'search', 'bag'];
 
